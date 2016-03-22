@@ -1,0 +1,9 @@
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\TestBitHandler.exe.config
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\TestBitHandler.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\TestBitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\BitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\obj\Debug\TestBitHandler.csprojResolveAssemblyReference.cache
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\obj\Debug\TestBitHandler.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\obj\Debug\TestBitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\Test.txt
