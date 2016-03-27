@@ -31,7 +31,7 @@ namespace BitHandler
             {
                 if (file.CanRead && fileBookmark != file.Length)
                 {
-                    
+
                     auxArray[0] = (byte)file.ReadByte();
                     readBuffer = new BitArray(auxArray);
                     noOfBitsRead++;
@@ -46,5 +46,17 @@ namespace BitHandler
             return readBuffer[(noOfBitsRead - 1) % 8];
         }
 
+        public BitArray ReadNBits(int noOfBits)
+        {
+            var bitsRead = new BitArray(noOfBits);
+            for (int i = 0; i < noOfBits; i++)
+            {
+                var bitRead = Read();
+                if (bitRead == null && i == 0)
+                    return null;
+                bitsRead[i] = (bitRead != null) ? (bool)bitRead : false;
+            }
+            return bitsRead;
+        }
     }
 }
