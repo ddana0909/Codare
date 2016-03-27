@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitHandler
 {
@@ -39,7 +34,10 @@ namespace BitHandler
                     return readBuffer[0];
                 }
                 else
+                {
+                    file.Close(); //file end
                     return null;
+                }
 
             }
             noOfBitsRead++;
@@ -53,8 +51,14 @@ namespace BitHandler
             {
                 var bitRead = Read();
                 if (bitRead == null && i == 0)
+                {
+                    file.Close();
                     return null;
-                bitsRead[i] = (bitRead != null) ? (bool)bitRead : false;
+                }
+
+                if (bitRead != null)
+
+                    bitsRead[i] = (bool)bitRead;
             }
             return bitsRead;
         }
