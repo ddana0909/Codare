@@ -35,7 +35,7 @@ namespace BitHandler
                 }
                 else
                 {
-                    file.Close(); //file end
+                    file.Close(); 
                     return null;
                 }
 

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitHandler
 {
@@ -13,18 +8,14 @@ namespace BitHandler
         private BitArray writeBuffer;
         private int noOfBitsWritten;
         private string filePath;
-        private int fileBookmark;
         private FileStream file;
 
         public BitWriter(string path)
         {
-            fileBookmark = 0;
             noOfBitsWritten = 0;
             filePath = path;
             writeBuffer = new BitArray(8);
-
             file=File.Create(filePath);
-            //file = File.Open(filePath, FileMode.Open);
 
         }
         public void WriteBit(bool bit)
