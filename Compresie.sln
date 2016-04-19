@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBitHandler", "TestBitHa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NearLosslessPredictiveCoder", "NearLosslessPredictiveCoder\NearLosslessPredictiveCoder.csproj", "{D4B86ACF-FB15-46E9-BD69-DDCAE9560079}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNearLossless", "TestNearLossless\TestNearLossless.csproj", "{96D01F90-A6B7-477D-845F-4B9F349D94A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D4B86ACF-FB15-46E9-BD69-DDCAE9560079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4B86ACF-FB15-46E9-BD69-DDCAE9560079}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4B86ACF-FB15-46E9-BD69-DDCAE9560079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D01F90-A6B7-477D-845F-4B9F349D94A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D01F90-A6B7-477D-845F-4B9F349D94A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D01F90-A6B7-477D-845F-4B9F349D94A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D01F90-A6B7-477D-845F-4B9F349D94A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

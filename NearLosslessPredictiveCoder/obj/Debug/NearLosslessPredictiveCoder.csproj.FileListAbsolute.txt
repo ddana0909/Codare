@@ -7,3 +7,12 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\NearLossle
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csproj.GenerateResource.Cache
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.exe
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.exe.config
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csprojResolveAssemblyReference.cache
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.Form1.resources
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.Properties.Resources.resources
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csproj.GenerateResource.Cache
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.pdb
