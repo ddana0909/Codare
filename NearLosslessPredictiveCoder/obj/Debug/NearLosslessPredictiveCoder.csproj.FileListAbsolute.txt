@@ -16,3 +16,5 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiv
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csproj.GenerateResource.Cache
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.exe
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\BitHandler.pdb

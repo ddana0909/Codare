@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Text;
 
 namespace NearLosslessPredictiveCoder
 {
@@ -22,18 +19,18 @@ namespace NearLosslessPredictiveCoder
         private int[,] decoded;
         private int[,] error;
 
-        public Coder(int acceptedError, int min, int max, int predictionFormula, int imageDim)
+        public Coder(int acceptedError, int min, int max, int predictionType, int imageDim, int[,] origMatrix)
         {
             k = acceptedError;
-            predFormula = predictionFormula;
+            predFormula = predictionType;
             rangeMinValue = min;
             rangeMaxValue = max;
             imageDimension = imageDim;
-            initMatrixes();
-    
-
+            InitMatrixes();
+            originalImage = origMatrix;
         }
-        private void initMatrixes()
+
+        private void InitMatrixes()
         {
             originalImage = new int[imageDimension, imageDimension];
             prediction1 = new int[imageDimension, imageDimension];
@@ -71,26 +68,19 @@ namespace NearLosslessPredictiveCoder
         private int PredictValue(int line, int column) //from decoded matrxi
         {
             var halfRange = (rangeMaxValue - rangeMinValue + 1) / 2;
-            int a, b, c;
             if (line == 0 && column == 0)
                 return PredictionFunctions.pHalfRange(halfRange);
-            a = 99999;
-            b = 99999;
-            c = 99999;
+            int b;
             if (column != 0)
             {
-                a = decoded[line, column - 1];
+                var a = decoded[line, column - 1];
                 if (line == 0)
                     return PredictionFunctions.pVal(a);
-                else
-                {
-                    b = decoded[line - 1, column];
-                    c = decoded[line - 1, column - 1];
-                }
+                b = decoded[line - 1, column];
+                var c = decoded[line - 1, column - 1];
                 return PredictionFunctions.Predict(a, b, c, predFormula, halfRange);
             }
-            else
-                b = decoded[line - 1, column];
+            b = decoded[line - 1, column];
             return PredictionFunctions.pVal(b);
         }
 
