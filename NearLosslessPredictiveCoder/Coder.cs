@@ -12,7 +12,7 @@ namespace NearLosslessPredictiveCoder
         private int imageDimension;
         public int[,] originalImage;
         private int[,] prediction1;
-        private int[,] predictionError;
+        public int[,] predictionError;
         public int[,] quatizedPredictionError;
         private int[,] deQuatizedPredictionError;
         private int[,] prediction2;

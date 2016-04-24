@@ -67,7 +67,7 @@
             this.displayedErrorGroupBox = new System.Windows.Forms.GroupBox();
             this.qPredErrorRadioBtn = new System.Windows.Forms.RadioButton();
             this.predErrorRadioBtn = new System.Windows.Forms.RadioButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.histogram = new System.Windows.Forms.PictureBox();
             this.saveDecodedBtn = new System.Windows.Forms.Button();
             this.loadEncodedImage = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -82,16 +82,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.originalImagePb)).BeginInit();
             this.histogramImputGroupBox.SuspendLayout();
             this.displayedErrorGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histogram)).BeginInit();
             this.predictorGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // histogramScaleTextBox
             // 
-            this.histogramScaleTextBox.Location = new System.Drawing.Point(379, 612);
+            this.histogramScaleTextBox.Location = new System.Drawing.Point(364, 628);
             this.histogramScaleTextBox.Name = "histogramScaleTextBox";
             this.histogramScaleTextBox.Size = new System.Drawing.Size(41, 20);
             this.histogramScaleTextBox.TabIndex = 84;
+            this.histogramScaleTextBox.Text = "0,5";
             // 
             // pARadioBtn
             // 
@@ -107,7 +108,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(376, 592);
+            this.label7.Location = new System.Drawing.Point(361, 612);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 83;
@@ -117,7 +118,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(537, 398);
+            this.label6.Location = new System.Drawing.Point(542, 443);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 24);
             this.label6.TabIndex = 82;
@@ -271,12 +272,13 @@
             this.refreshHistogramBtn.Size = new System.Drawing.Size(50, 47);
             this.refreshHistogramBtn.TabIndex = 86;
             this.refreshHistogramBtn.UseVisualStyleBackColor = true;
+            this.refreshHistogramBtn.Click += new System.EventHandler(this.refreshHistogramBtn_Click);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.maxComputedErrorLabel);
             this.groupBox5.Controls.Add(this.minComputedErrorLabel);
-            this.groupBox5.Location = new System.Drawing.Point(541, 691);
+            this.groupBox5.Location = new System.Drawing.Point(423, 396);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(303, 42);
             this.groupBox5.TabIndex = 87;
@@ -383,7 +385,7 @@
             this.histogramImputGroupBox.Controls.Add(this.hiOriginalImageRadioBtn);
             this.histogramImputGroupBox.Controls.Add(this.hiPredictionErrorRadioBtn);
             this.histogramImputGroupBox.Controls.Add(this.hiQPredErrRadioBtn);
-            this.histogramImputGroupBox.Location = new System.Drawing.Point(364, 451);
+            this.histogramImputGroupBox.Location = new System.Drawing.Point(364, 473);
             this.histogramImputGroupBox.Name = "histogramImputGroupBox";
             this.histogramImputGroupBox.Size = new System.Drawing.Size(163, 120);
             this.histogramImputGroupBox.TabIndex = 69;
@@ -406,10 +408,10 @@
             this.hiOriginalImageRadioBtn.AutoSize = true;
             this.hiOriginalImageRadioBtn.Location = new System.Drawing.Point(15, 19);
             this.hiOriginalImageRadioBtn.Name = "hiOriginalImageRadioBtn";
-            this.hiOriginalImageRadioBtn.Size = new System.Drawing.Size(91, 17);
+            this.hiOriginalImageRadioBtn.Size = new System.Drawing.Size(92, 17);
             this.hiOriginalImageRadioBtn.TabIndex = 7;
             this.hiOriginalImageRadioBtn.TabStop = true;
-            this.hiOriginalImageRadioBtn.Text = "Original image";
+            this.hiOriginalImageRadioBtn.Text = "Original Image";
             this.hiOriginalImageRadioBtn.UseVisualStyleBackColor = true;
             // 
             // hiPredictionErrorRadioBtn
@@ -428,10 +430,10 @@
             this.hiQPredErrRadioBtn.AutoSize = true;
             this.hiQPredErrRadioBtn.Location = new System.Drawing.Point(15, 69);
             this.hiQPredErrRadioBtn.Name = "hiQPredErrRadioBtn";
-            this.hiQPredErrRadioBtn.Size = new System.Drawing.Size(145, 17);
+            this.hiQPredErrRadioBtn.Size = new System.Drawing.Size(148, 17);
             this.hiQPredErrRadioBtn.TabIndex = 9;
             this.hiQPredErrRadioBtn.TabStop = true;
-            this.hiQPredErrRadioBtn.Text = "Quantized Predicion Error";
+            this.hiQPredErrRadioBtn.Text = "Quantized Prediction Error";
             this.hiQPredErrRadioBtn.UseVisualStyleBackColor = true;
             // 
             // decodeBtn
@@ -449,6 +451,7 @@
             this.errorImageScaleTextBox.Name = "errorImageScaleTextBox";
             this.errorImageScaleTextBox.Size = new System.Drawing.Size(41, 20);
             this.errorImageScaleTextBox.TabIndex = 72;
+            this.errorImageScaleTextBox.Text = "0,5";
             // 
             // displayedErrorGroupBox
             // 
@@ -483,14 +486,14 @@
             this.predErrorRadioBtn.Text = "Prediction Error";
             this.predErrorRadioBtn.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // histogram
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(541, 427);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(511, 258);
-            this.pictureBox2.TabIndex = 78;
-            this.pictureBox2.TabStop = false;
+            this.histogram.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.histogram.Location = new System.Drawing.Point(541, 473);
+            this.histogram.Name = "histogram";
+            this.histogram.Size = new System.Drawing.Size(511, 256);
+            this.histogram.TabIndex = 78;
+            this.histogram.TabStop = false;
             // 
             // saveDecodedBtn
             // 
@@ -514,7 +517,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(717, 21);
+            this.label4.Location = new System.Drawing.Point(792, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(145, 24);
             this.label4.TabIndex = 74;
@@ -573,7 +576,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 740);
+            this.ClientSize = new System.Drawing.Size(1140, 759);
             this.Controls.Add(this.histogramScaleTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -595,13 +598,14 @@
             this.Controls.Add(this.decodeBtn);
             this.Controls.Add(this.errorImageScaleTextBox);
             this.Controls.Add(this.displayedErrorGroupBox);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.histogram);
             this.Controls.Add(this.saveDecodedBtn);
             this.Controls.Add(this.loadEncodedImage);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.predictorGroupBox);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Near Lossles Predictive Coder";
             this.saveModeGroupBox.ResumeLayout(false);
             this.saveModeGroupBox.PerformLayout();
@@ -614,7 +618,7 @@
             this.histogramImputGroupBox.PerformLayout();
             this.displayedErrorGroupBox.ResumeLayout(false);
             this.displayedErrorGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histogram)).EndInit();
             this.predictorGroupBox.ResumeLayout(false);
             this.predictorGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -663,7 +667,7 @@
         private System.Windows.Forms.GroupBox displayedErrorGroupBox;
         private System.Windows.Forms.RadioButton qPredErrorRadioBtn;
         private System.Windows.Forms.RadioButton predErrorRadioBtn;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox histogram;
         private System.Windows.Forms.Button saveDecodedBtn;
         private System.Windows.Forms.Button loadEncodedImage;
         private System.Windows.Forms.Label label4;
