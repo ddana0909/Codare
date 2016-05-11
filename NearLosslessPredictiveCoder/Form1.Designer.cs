@@ -126,7 +126,7 @@
             // 
             // acceptedErrorTextBox
             // 
-            this.acceptedErrorTextBox.Location = new System.Drawing.Point(201, 382);
+            this.acceptedErrorTextBox.Location = new System.Drawing.Point(39, 616);
             this.acceptedErrorTextBox.Name = "acceptedErrorTextBox";
             this.acceptedErrorTextBox.Size = new System.Drawing.Size(48, 20);
             this.acceptedErrorTextBox.TabIndex = 81;
@@ -167,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(198, 366);
+            this.label5.Location = new System.Drawing.Point(36, 600);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 80;
@@ -178,7 +178,7 @@
             this.saveModeGroupBox.Controls.Add(this.sm9BitsRadioBtn);
             this.saveModeGroupBox.Controls.Add(this.smJpegRadioBtn);
             this.saveModeGroupBox.Controls.Add(this.smAritmCodingRadioBtn);
-            this.saveModeGroupBox.Location = new System.Drawing.Point(39, 599);
+            this.saveModeGroupBox.Location = new System.Drawing.Point(199, 362);
             this.saveModeGroupBox.Name = "saveModeGroupBox";
             this.saveModeGroupBox.Size = new System.Drawing.Size(137, 93);
             this.saveModeGroupBox.TabIndex = 79;
@@ -314,12 +314,13 @@
             // 
             // saveOrigBtn
             // 
-            this.saveOrigBtn.Location = new System.Drawing.Point(220, 319);
+            this.saveOrigBtn.Location = new System.Drawing.Point(199, 319);
             this.saveOrigBtn.Name = "saveOrigBtn";
             this.saveOrigBtn.Size = new System.Drawing.Size(75, 23);
             this.saveOrigBtn.TabIndex = 67;
             this.saveOrigBtn.Text = "Save";
             this.saveOrigBtn.UseVisualStyleBackColor = true;
+            this.saveOrigBtn.Click += new System.EventHandler(this.saveOrigBtn_Click);
             // 
             // label2
             // 
@@ -333,7 +334,7 @@
             // 
             // encodeBtn
             // 
-            this.encodeBtn.Location = new System.Drawing.Point(129, 319);
+            this.encodeBtn.Location = new System.Drawing.Point(39, 319);
             this.encodeBtn.Name = "encodeBtn";
             this.encodeBtn.Size = new System.Drawing.Size(75, 23);
             this.encodeBtn.TabIndex = 66;
@@ -343,9 +344,10 @@
             // 
             // loadOrigBtn
             // 
-            this.loadOrigBtn.Location = new System.Drawing.Point(39, 319);
+            this.loadOrigBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadOrigBtn.Location = new System.Drawing.Point(3, 119);
             this.loadOrigBtn.Name = "loadOrigBtn";
-            this.loadOrigBtn.Size = new System.Drawing.Size(75, 23);
+            this.loadOrigBtn.Size = new System.Drawing.Size(30, 99);
             this.loadOrigBtn.TabIndex = 65;
             this.loadOrigBtn.Text = "Load";
             this.loadOrigBtn.UseVisualStyleBackColor = true;
@@ -387,7 +389,7 @@
             this.histogramImputGroupBox.Controls.Add(this.hiQPredErrRadioBtn);
             this.histogramImputGroupBox.Location = new System.Drawing.Point(364, 473);
             this.histogramImputGroupBox.Name = "histogramImputGroupBox";
-            this.histogramImputGroupBox.Size = new System.Drawing.Size(163, 120);
+            this.histogramImputGroupBox.Size = new System.Drawing.Size(171, 115);
             this.histogramImputGroupBox.TabIndex = 69;
             this.histogramImputGroupBox.TabStop = false;
             this.histogramImputGroupBox.Text = "Histogram input";
@@ -438,7 +440,7 @@
             // 
             // decodeBtn
             // 
-            this.decodeBtn.Location = new System.Drawing.Point(883, 319);
+            this.decodeBtn.Location = new System.Drawing.Point(796, 319);
             this.decodeBtn.Name = "decodeBtn";
             this.decodeBtn.Size = new System.Drawing.Size(75, 23);
             this.decodeBtn.TabIndex = 76;
@@ -497,7 +499,7 @@
             // 
             // saveDecodedBtn
             // 
-            this.saveDecodedBtn.Location = new System.Drawing.Point(977, 319);
+            this.saveDecodedBtn.Location = new System.Drawing.Point(951, 319);
             this.saveDecodedBtn.Name = "saveDecodedBtn";
             this.saveDecodedBtn.Size = new System.Drawing.Size(75, 23);
             this.saveDecodedBtn.TabIndex = 77;
@@ -506,9 +508,10 @@
             // 
             // loadEncodedImage
             // 
-            this.loadEncodedImage.Location = new System.Drawing.Point(796, 319);
+            this.loadEncodedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadEncodedImage.Location = new System.Drawing.Point(1068, 119);
             this.loadEncodedImage.Name = "loadEncodedImage";
-            this.loadEncodedImage.Size = new System.Drawing.Size(75, 23);
+            this.loadEncodedImage.Size = new System.Drawing.Size(31, 99);
             this.loadEncodedImage.TabIndex = 75;
             this.loadEncodedImage.Text = "Load";
             this.loadEncodedImage.UseVisualStyleBackColor = true;

@@ -7,3 +7,6 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHan
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\obj\Debug\TestBitHandler.exe
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\obj\Debug\TestBitHandler.pdb
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHandler\bin\Debug\Test.txt
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\TestBitHandler.exe.config
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\obj\Debug\TestBitHandler.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\obj\Debug\TestBitHandler.pdb

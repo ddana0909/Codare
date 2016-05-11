@@ -62,7 +62,11 @@ namespace NearLosslessPredictiveCoder
 
         private static int pJpegLs(int a, int b, int c)
         {
-            return a; ///??????
+            if (c >= Math.Max(a, b))
+                return Math.Min(a, b);
+            if (c <= Math.Min(a, b))
+                return Math.Max(a, b);
+            return a + b - c;
         }
 
 

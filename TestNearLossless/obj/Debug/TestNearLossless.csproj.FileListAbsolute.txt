@@ -6,3 +6,5 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\bin\
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\obj\Debug\TestNearLossless.csprojResolveAssemblyReference.cache
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\obj\Debug\TestNearLossless.exe
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\obj\Debug\TestNearLossless.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\bin\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\bin\Debug\BitHandler.pdb

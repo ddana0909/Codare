@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BitHandler;
 using static System.Double;
 using static System.Int32;
 
@@ -18,6 +17,8 @@ namespace NearLosslessPredictiveCoder
         private Dictionary<int, string> _predictionTypes;
         private string _origPicturePath;
         private int[,] _originalImageMatrix;
+        private byte[] _origImageHeader;
+
         public Form1()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace NearLosslessPredictiveCoder
                 {
                     originalImagePb.Image = picture;
                     _origPicturePath = dlg.FileName;
-                    _originalImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, origImageHeight, origImageWidth);
+                    _originalImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, origImageHeight, origImageWidth, out _origImageHeader);
                 }
             }
 
@@ -93,7 +94,6 @@ namespace NearLosslessPredictiveCoder
             _coder.Code();
             MessageBox.Show("Coded");
 
-
         }
 
         private bool InitCoder()
@@ -109,17 +109,13 @@ namespace NearLosslessPredictiveCoder
                 return false;
             var predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
 
-
-
-            //mai trebuie tratat cazul cand nu e checked save mode
-            _coder = new Coder(intAcceptedError, 0, 512, predictorType, 256, _originalImageMatrix);
+            _coder = new Coder(intAcceptedError, 0, 255, predictorType, originalImagePb.Image.Width, _originalImageMatrix);
             return true;
 
         }
 
         private void refreshHistogramBtn_Click(object sender, EventArgs e)
         {
-            int[] histVector;
             RadioButton checkedRb = histogramImputGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             if (checkedRb == null)
             {
@@ -138,7 +134,7 @@ namespace NearLosslessPredictiveCoder
             switch (checkedRb.Text)
             {
                 case "Original Image":
-                    DrawHistogram(getHistogram(ImageHandler.ImageToMatrix(_origPicturePath, 256, 256)), scale);
+                    DrawHistogram(getHistogram(_originalImageMatrix), scale);
                     break;
                 case "Quantized Prediction Error":
                     {
@@ -174,7 +170,8 @@ namespace NearLosslessPredictiveCoder
             pen = new Pen(Color.BlueViolet);
             for (int i = 0; i < values.Length; i++)
             {
-                g.DrawLine(pen, new Point { X = i, Y = 255 }, new Point { X = i, Y = histogram.Height - (int)(scale * values[i]) });
+                g.DrawLine(pen, new Point { X = i, Y = 255 },
+                    new Point { X = i, Y = histogram.Height - (int)(scale * values[i]) });
             }
             histogram.Image = bmp;
             g.Dispose();
@@ -194,5 +191,60 @@ namespace NearLosslessPredictiveCoder
             return histogram;
 
         }
+
+        private void saveOrigBtn_Click(object sender, EventArgs e)
+        {
+            RadioButton checkedRb = saveModeGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            if (checkedRb == null)
+            {
+                MessageBox.Show("Histogram input not defined");
+                return;
+            }
+            switch (checkedRb.Text)
+            {
+                case "Fixed no bits - 9":
+                    {
+                        saveEncodedImage("F");
+                        break;
+                    }
+                case "JPEG Table":
+                    break;
+                case "Arithmetic Coding":
+                    break;
+            }
+        }
+
+        private void saveEncodedImage(string saveMode)
+        {
+            RadioButton checkedRb = predictorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            int predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
+            string acceptedError = acceptedErrorTextBox.Text;
+            string fileName = "Coded.bmp.p" + predictorType + "k" + acceptedError + saveMode;
+
+            var writer = new BitWriter("../../../Images/" + fileName);
+
+            writer.WriteNBits(new BitArray(_origImageHeader));
+
+            byte[] predictor = Encoding.ASCII.GetBytes("p" + predictorType);
+            byte[] error = Encoding.ASCII.GetBytes("k" + acceptedError);
+            byte[] saveMeth = Encoding.ASCII.GetBytes("k" + saveMode);
+
+            writer.WriteNBits(new BitArray(predictor));
+            writer.WriteNBits(new BitArray(error));
+            writer.WriteNBits(new BitArray(saveMeth));
+
+            //write quantized prediction Error to File
+            for (int i = 0; i <_coder.quatizedPredictionError.GetLength(0); i++)
+            {
+                for (int j = 0; j < _coder.quatizedPredictionError.GetLength(1); j++)
+                {
+                    writer.WriteNBits(new BitArray(_coder.quatizedPredictionError[i,j]));
+                }
+            }
+
+
+
+        }
+
     }
 }
