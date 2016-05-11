@@ -9,29 +9,8 @@ namespace TestNearLossless
     {
         static void Main(string[] args)
         {
-            var predictorType = "GL";
-            byte[] predictor = Encoding.ASCII.GetBytes("p" + predictorType);
-            //byte[] error = Encoding.ASCII.GetBytes("k" + acceptedError);
-            //byte[] saveMeth = Encoding.ASCII.GetBytes("k" + saveMode);
 
-            // writer.WriteNBits(new BitArray(predictor));
-            //writer.WriteNBits(new BitArray(error));
-            //writer.WriteNBits(new BitArray(saveMeth));
-
-            var bitarray = new BitArray(predictor);
-
-            int x = -2;
-            int y = 2;
-             bitarray = new BitArray(new[] {1,-1,0,2,-2, 5,-5});
-
-            for (int i = 0; i < bitarray.Length; i++)
-            {
-                if (i % 32 == 0)
-                    Console.WriteLine();
-                Console.Write(bitarray[i] ? 1 : 0);
-
-            }
-            Console.WriteLine();
+            //Test the coding algorithm
             /*var coder = new Coder(2, 0, 15, 4, 4)
             {
                 originalImage = new int[,] {{7, 5, 2, 0}, {2, 11, 1, 0}, {15, 15, 15, 0}, {1, 4, 14, 14}}
@@ -47,6 +26,25 @@ namespace TestNearLossless
                 Console.WriteLine();
             }*/
 
+            Console.ReadLine();
         }
+
+
+
+        private static void DisplayBitArray(BitArray bitArray, int typeLength)
+        {
+            for (int i = 0; i < bitArray.Length; i++)
+            {
+                if (i % typeLength == 0)
+                    Console.WriteLine();
+                Console.Write(bitArray[i] ? 1 : 0);
+            }
+            Console.WriteLine();
+        }
+
+
+
     }
+
 }
+

@@ -18,3 +18,14 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiv
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.pdb
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\BitHandler.dll
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\BitHandler.pdb
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.exe.config
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.exe
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\bin\Debug\NearLosslessPredictiveCoder.pdb
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\bin\Debug\BitHandler.dll
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\bin\Debug\BitHandler.pdb
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csprojResolveAssemblyReference.cache
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.Form1.resources
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.Properties.Resources.resources
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csproj.GenerateResource.Cache
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.exe
+C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.pdb

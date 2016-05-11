@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using BitHandler;
 using static System.Double;
 using static System.Int32;
+using System.IO;
 
 namespace NearLosslessPredictiveCoder
 {
@@ -220,30 +221,26 @@ namespace NearLosslessPredictiveCoder
             int predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
             string acceptedError = acceptedErrorTextBox.Text;
             string fileName = "Coded.bmp.p" + predictorType + "k" + acceptedError + saveMode;
-
+            if (File.Exists(@"../../../Images/" + fileName))
+            {
+                File.Delete(@"../../../Images/" + fileName);
+            }
             var writer = new BitWriter("../../../Images/" + fileName);
 
-            writer.WriteNBits(new BitArray(_origImageHeader));
+            writer.WriteNBits(new BitArray(_origImageHeader)); //asta inca nu e ok
 
-            byte[] predictor = Encoding.ASCII.GetBytes("p" + predictorType);
-            byte[] error = Encoding.ASCII.GetBytes("k" + acceptedError);
-            byte[] saveMeth = Encoding.ASCII.GetBytes("k" + saveMode);
-
-            writer.WriteNBits(new BitArray(predictor));
-            writer.WriteNBits(new BitArray(error));
-            writer.WriteNBits(new BitArray(saveMeth));
+            writer.WriteString("p" + predictorType);
+            writer.WriteString("k" + acceptedError);
+            writer.WriteString("s" + saveMode);
 
             //write quantized prediction Error to File
             for (int i = 0; i <_coder.quatizedPredictionError.GetLength(0); i++)
             {
                 for (int j = 0; j < _coder.quatizedPredictionError.GetLength(1); j++)
                 {
-                    writer.WriteNBits(new BitArray(_coder.quatizedPredictionError[i,j]));
+                    writer.WriteIntOnNBits(_coder.quatizedPredictionError[i, j],9);
                 }
             }
-
-
-
         }
 
     }
