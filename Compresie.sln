@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNearLossless", "TestNea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wavelet", "Wavelet\Wavelet.csproj", "{BCBCD3F5-AA65-456F-B478-11F8B6ADF5BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{0051771C-A2BE-4E04-9A70-8F04AA55D93B}"
+	ProjectSection(SolutionItems) = preProject
+		Images\Lenna256an.bmp = Images\Lenna256an.bmp
+		Images\Lenna512an.BMP = Images\Lenna512an.BMP
+		Images\Peppers256an.bmp = Images\Peppers256an.bmp
+		Images\Peppers512an.BMP = Images\Peppers512an.BMP
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
