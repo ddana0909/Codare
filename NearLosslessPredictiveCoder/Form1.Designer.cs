@@ -38,6 +38,7 @@
             this.pBRadioBtn = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.saveModeGroupBox = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.sm9BitsRadioBtn = new System.Windows.Forms.RadioButton();
             this.smJpegRadioBtn = new System.Windows.Forms.RadioButton();
             this.smAritmCodingRadioBtn = new System.Windows.Forms.RadioButton();
@@ -76,7 +77,6 @@
             this.pCRadioBtn = new System.Windows.Forms.RadioButton();
             this.pJpegRadioBtn = new System.Windows.Forms.RadioButton();
             this.statusLabel = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.saveModeGroupBox.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -188,6 +188,18 @@
             this.saveModeGroupBox.TabStop = false;
             this.saveModeGroupBox.Text = "Save Mode";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(15, 90);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(59, 17);
+            this.radioButton1.TabIndex = 12;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Default";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // sm9BitsRadioBtn
             // 
             this.sm9BitsRadioBtn.AutoSize = true;
@@ -242,6 +254,7 @@
             this.refreshErrorImageBtn.Size = new System.Drawing.Size(50, 47);
             this.refreshErrorImageBtn.TabIndex = 85;
             this.refreshErrorImageBtn.UseVisualStyleBackColor = true;
+            this.refreshErrorImageBtn.Click += new System.EventHandler(this.refreshErrorImageBtn_Click);
             // 
             // pABCRadioBtn
             // 
@@ -411,6 +424,7 @@
             // hiOriginalImageRadioBtn
             // 
             this.hiOriginalImageRadioBtn.AutoSize = true;
+            this.hiOriginalImageRadioBtn.Checked = true;
             this.hiOriginalImageRadioBtn.Location = new System.Drawing.Point(15, 19);
             this.hiOriginalImageRadioBtn.Name = "hiOriginalImageRadioBtn";
             this.hiOriginalImageRadioBtn.Size = new System.Drawing.Size(92, 17);
@@ -449,6 +463,7 @@
             this.decodeBtn.TabIndex = 76;
             this.decodeBtn.Text = "Decode";
             this.decodeBtn.UseVisualStyleBackColor = true;
+            this.decodeBtn.Click += new System.EventHandler(this.decodeBtn_Click);
             // 
             // errorImageScaleTextBox
             // 
@@ -483,6 +498,7 @@
             // predErrorRadioBtn
             // 
             this.predErrorRadioBtn.AutoSize = true;
+            this.predErrorRadioBtn.Checked = true;
             this.predErrorRadioBtn.Location = new System.Drawing.Point(7, 20);
             this.predErrorRadioBtn.Name = "predErrorRadioBtn";
             this.predErrorRadioBtn.Size = new System.Drawing.Size(97, 17);
@@ -586,17 +602,6 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 13);
             this.statusLabel.TabIndex = 88;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 90);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 17);
-            this.radioButton1.TabIndex = 12;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Default";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

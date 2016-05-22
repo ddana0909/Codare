@@ -10,3 +10,9 @@ C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\TestBitHan
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\TestBitHandler.exe.config
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\obj\Debug\TestBitHandler.exe
 C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\obj\Debug\TestBitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\Test.txt
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\TestBitHandler.exe
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\TestBitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\bin\Debug\BitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestBitHandler\obj\Debug\TestBitHandler.csprojResolveAssemblyReference.cache

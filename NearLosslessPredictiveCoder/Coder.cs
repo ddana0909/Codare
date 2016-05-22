@@ -5,20 +5,24 @@ namespace NearLosslessPredictiveCoder
 {
     public class Coder
     {
-        private int k;
-        private int rangeMinValue { get; set; }
-        private int rangeMaxValue { get; set; }
-        private int predFormula;
-        private int imageDimension;
-        public int[,] originalImage;
-        private int[,] prediction1;
-        public int[,] predictionError;
-        public int[,] quatizedPredictionError;
-        private int[,] deQuatizedPredictionError;
-        private int[,] prediction2;
-        private int[,] decoded;
-        private int[,] error;
+        protected int k;
+        protected int rangeMinValue { get; set; }
+        protected int rangeMaxValue { get; set; }
+        protected int predFormula;
+        protected int imageDimension;
+        public int[,] OriginalImage;
+        protected int[,] prediction1;
+        public int[,] PredictionError;
+        public int[,] QuatizedPredictionError;
+        protected int[,] deQuatizedPredictionError;
+       // private int[,] prediction2;
+        public int[,] Decoded;
+        protected int[,] error;
 
+        protected Coder()
+        {
+
+        }
         public Coder(int acceptedError, int min, int max, int predictionType, int imageDim, int[,] origMatrix)
         {
             k = acceptedError;
@@ -27,18 +31,18 @@ namespace NearLosslessPredictiveCoder
             rangeMaxValue = max;
             imageDimension = imageDim;
             InitMatrixes();
-            originalImage = origMatrix;
+            OriginalImage = origMatrix;
         }
 
-        private void InitMatrixes()
+        protected void InitMatrixes()
         {
-            originalImage = new int[imageDimension, imageDimension];
+            OriginalImage = new int[imageDimension, imageDimension];
             prediction1 = new int[imageDimension, imageDimension];
-            predictionError = new int[imageDimension, imageDimension];
-            quatizedPredictionError = new int[imageDimension, imageDimension];
+            PredictionError = new int[imageDimension, imageDimension];
+            QuatizedPredictionError = new int[imageDimension, imageDimension];
             deQuatizedPredictionError = new int[imageDimension, imageDimension];
-            prediction2 = new int[imageDimension, imageDimension];
-            decoded = new int[imageDimension, imageDimension];
+            //prediction2 = new int[imageDimension, imageDimension];
+            Decoded = new int[imageDimension, imageDimension];
             error = new int[imageDimension, imageDimension];
         }
         public void Code()
@@ -48,11 +52,11 @@ namespace NearLosslessPredictiveCoder
                 for (var j = 0; j < imageDimension ; j++)
                 {
                     prediction1[i, j] = TruncateValueToInterval(PredictValue(i, j)); //predictionFormula --change
-                    predictionError[i, j] = originalImage[i, j] - prediction1[i, j];
-                    quatizedPredictionError[i, j] = Quantize(predictionError[i, j]);
-                    deQuatizedPredictionError[i, j] = DeQuantize(quatizedPredictionError[i, j]);
-                    decoded[i, j] = deQuatizedPredictionError[i, j] + prediction1[i, j];
-                    error[i, j] = originalImage[i, j] - decoded[i, j];
+                    PredictionError[i, j] = OriginalImage[i, j] - prediction1[i, j];
+                    QuatizedPredictionError[i, j] = Quantize(PredictionError[i, j]);
+                    deQuatizedPredictionError[i, j] = DeQuantize(QuatizedPredictionError[i, j]);
+                    Decoded[i, j] = deQuatizedPredictionError[i, j] + prediction1[i, j];
+                    error[i, j] = OriginalImage[i, j] - Decoded[i, j];
                 }
         }
 
@@ -61,11 +65,11 @@ namespace NearLosslessPredictiveCoder
         {
             return (int)Math.Floor((double)(value + k) / (2 * k + 1));
         }
-        private int DeQuantize(int value)
+        protected int DeQuantize(int value)
         {
             return value * (2 * k + 1);
         }
-        private int PredictValue(int line, int column) //from decoded matrxi
+        protected int PredictValue(int line, int column) //from decoded matrxi
         {
             var halfRange = (rangeMaxValue - rangeMinValue + 1) / 2;
             if (line == 0 && column == 0)
@@ -73,18 +77,18 @@ namespace NearLosslessPredictiveCoder
             int b;
             if (column != 0)
             {
-                var a = decoded[line, column - 1];
+                var a = Decoded[line, column - 1];
                 if (line == 0)
                     return PredictionFunctions.pVal(a);
-                b = decoded[line - 1, column];
-                var c = decoded[line - 1, column - 1];
+                b = Decoded[line - 1, column];
+                var c = Decoded[line - 1, column - 1];
                 return PredictionFunctions.Predict(a, b, c, predFormula, halfRange);
             }
-            b = decoded[line - 1, column];
+            b = Decoded[line - 1, column];
             return PredictionFunctions.pVal(b);
         }
 
-        private int TruncateValueToInterval(int value)
+        protected int TruncateValueToInterval(int value)
         {
             if (value < rangeMinValue)
                 return rangeMinValue;
