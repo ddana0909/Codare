@@ -75,6 +75,8 @@
             this.predictorGroupBox = new System.Windows.Forms.GroupBox();
             this.pCRadioBtn = new System.Windows.Forms.RadioButton();
             this.pJpegRadioBtn = new System.Windows.Forms.RadioButton();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.saveModeGroupBox.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -175,12 +177,13 @@
             // 
             // saveModeGroupBox
             // 
+            this.saveModeGroupBox.Controls.Add(this.radioButton1);
             this.saveModeGroupBox.Controls.Add(this.sm9BitsRadioBtn);
             this.saveModeGroupBox.Controls.Add(this.smJpegRadioBtn);
             this.saveModeGroupBox.Controls.Add(this.smAritmCodingRadioBtn);
             this.saveModeGroupBox.Location = new System.Drawing.Point(199, 362);
             this.saveModeGroupBox.Name = "saveModeGroupBox";
-            this.saveModeGroupBox.Size = new System.Drawing.Size(137, 93);
+            this.saveModeGroupBox.Size = new System.Drawing.Size(137, 116);
             this.saveModeGroupBox.TabIndex = 79;
             this.saveModeGroupBox.TabStop = false;
             this.saveModeGroupBox.Text = "Save Mode";
@@ -515,6 +518,7 @@
             this.loadEncodedImage.TabIndex = 75;
             this.loadEncodedImage.Text = "Load";
             this.loadEncodedImage.UseVisualStyleBackColor = true;
+            this.loadEncodedImage.Click += new System.EventHandler(this.loadEncodedImage_Click);
             // 
             // label4
             // 
@@ -575,11 +579,31 @@
             this.pJpegRadioBtn.Text = "jpegLS";
             this.pJpegRadioBtn.UseVisualStyleBackColor = true;
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(39, 687);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 13);
+            this.statusLabel.TabIndex = 88;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(15, 90);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(59, 17);
+            this.radioButton1.TabIndex = 12;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Default";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 759);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.histogramScaleTextBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -678,6 +702,8 @@
         private System.Windows.Forms.GroupBox predictorGroupBox;
         private System.Windows.Forms.RadioButton pCRadioBtn;
         private System.Windows.Forms.RadioButton pJpegRadioBtn;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 

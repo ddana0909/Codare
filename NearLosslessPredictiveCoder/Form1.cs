@@ -17,8 +17,11 @@ namespace NearLosslessPredictiveCoder
         private Coder _coder;
         private Dictionary<int, string> _predictionTypes;
         private string _origPicturePath;
+        private string _codedPicturePath;
         private int[,] _originalImageMatrix;
+        private int[,] _codedImageMatrix;
         private byte[] _origImageHeader;
+
 
         public Form1()
         {
@@ -93,7 +96,8 @@ namespace NearLosslessPredictiveCoder
             }
 
             _coder.Code();
-            MessageBox.Show("Coded");
+            statusLabel.Text = "Coded finished";
+            statusLabel.ForeColor = Color.Red;
 
         }
 
@@ -205,43 +209,171 @@ namespace NearLosslessPredictiveCoder
             {
                 case "Fixed no bits - 9":
                     {
-                        saveEncodedImage("F");
+                        SaveEncodedImage("F");
                         break;
                     }
                 case "JPEG Table":
                     break;
                 case "Arithmetic Coding":
                     break;
+                default:
+                    {
+                        SaveEncodedImage("D");
+                        break;
+                    }
             }
+            statusLabel.Text = "Saved";
         }
 
-        private void saveEncodedImage(string saveMode)
+        private void SaveEncodedImage(string saveMode)
         {
             RadioButton checkedRb = predictorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             int predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
             string acceptedError = acceptedErrorTextBox.Text;
-            string fileName = "Coded.bmp.p" + predictorType + "k" + acceptedError + saveMode;
+            string fileName = "Coded.bmp.p" + predictorType + "k" + acceptedError + saveMode + ".prd";
             if (File.Exists(@"../../../Images/" + fileName))
             {
                 File.Delete(@"../../../Images/" + fileName);
             }
+            if (saveMode == "F")
+            { FixedCoding(fileName, predictorType, acceptedError); }
+            if (saveMode == "D")
+            {
+                DefaultCoding(fileName, predictorType, acceptedError);
+                return;
+            }
+
+
+        }
+
+        private void DefaultCoding(string fileName, int predictorType, string acceptedError)
+        {
+            //Create the file.
+            using (BinaryWriter fs = new BinaryWriter(File.Open(@"../../../Images/"+fileName, FileMode.Create)))
+            {
+                //fs.Write(_origImageHeader);
+                foreach (var b in _origImageHeader)
+                    fs.Write(b);
+                fs.Write("p" + predictorType);
+                fs.Write("k" + acceptedError);
+                fs.Write("s" + "F");
+                for (int i = 0; i < _coder.quatizedPredictionError.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _coder.quatizedPredictionError.GetLength(1); j++)
+                    {
+                        fs.Write(_coder.quatizedPredictionError[i, j]);
+                    }
+                }
+            }
+        }
+
+        private void FixedCoding(string fileName, int predictorType, string acceptedError)
+        {
+
             var writer = new BitWriter("../../../Images/" + fileName);
 
             writer.WriteNBits(new BitArray(_origImageHeader)); //asta inca nu e ok
 
             writer.WriteString("p" + predictorType);
             writer.WriteString("k" + acceptedError);
-            writer.WriteString("s" + saveMode);
+            writer.WriteString("s" + "F");
 
             //write quantized prediction Error to File
-            for (int i = 0; i <_coder.quatizedPredictionError.GetLength(0); i++)
+            for (int i = 0; i < _coder.quatizedPredictionError.GetLength(0); i++)
             {
                 for (int j = 0; j < _coder.quatizedPredictionError.GetLength(1); j++)
                 {
-                    writer.WriteIntOnNBits(_coder.quatizedPredictionError[i, j],9);
+                    writer.WriteIntOnNBits(_coder.quatizedPredictionError[i, j], 9);
+                }
+            }
+            writer.FlushLastBits();
+        }
+
+
+        private void loadEncodedImage_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+
+            dlg.Title = "Open Image";
+            //dlg.Filter = "bmp files (*.prd)|*.prd";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                //var picture = Image.FromFile(dlg.FileName);
+
+
+                //var codedImageWidth = picture.Width;
+                //var codedImageHeigth = picture.Height;
+
+                _codedPicturePath = dlg.FileName;
+                //_codedImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, 256, 256, out _origImageHeader);
+                //ReadCodedImage();
+                ReadDeafault();
+            }
+
+            dlg.Dispose();
+        }
+
+        private void ReadDeafault()
+        {
+            _codedImageMatrix = new int[256, 256];
+            using (BinaryReader sr = new BinaryReader(File.Open(_codedPicturePath, FileMode.Open)))
+            {
+                var header = new byte[1078];
+                for (int i = 0; i < 1078; i++)
+                    header[i] = sr.ReadByte();
+                var predictionType = sr.ReadString();
+                var accepedError = sr.ReadString();
+                var saveMode = sr.ReadString();
+                for (int i = 0; i < 256; i++)
+                {
+
+                    for (int j = 0; j < 256; j++)
+                    {
+                        _codedImageMatrix[i, j] = sr.ReadInt32();
+                    }
+
+
                 }
             }
         }
 
+        private void ReadCodedImage()
+        {
+            var x = new BitReader(_codedPicturePath);
+            //byte[] image = 
+            var header = x.ReadNBits(8624);
+            var predictionType = ConvertToByte(x.ReadNBits(8));
+            //int accepedError = (int)image[1081];
+            char saveMode = 'F';
+            //s
+            switch (saveMode)
+            {
+                case 'F':
+                    {
+                        ReadCodedImageFromFile();
+                        break;
+                    }
+            }
+
+        }
+
+        private void ReadCodedImageFromFile()
+        {
+
+        }
+
+        byte ConvertToByte(BitArray bits)
+        {
+            if (bits.Count != 8)
+            {
+                throw new ArgumentException("bits");
+            }
+            byte[] bytes = new byte[1];
+            bits.CopyTo(bytes, 0);
+            return bytes[0];
+        }
     }
+
 }

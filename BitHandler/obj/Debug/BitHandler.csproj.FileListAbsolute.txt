@@ -8,3 +8,8 @@ C:\Users\Unknown\Source\Repos\Codare\BitHandler\bin\Debug\BitHandler.pdb
 C:\Users\Unknown\Source\Repos\Codare\BitHandler\obj\Debug\BitHandler.csprojResolveAssemblyReference.cache
 C:\Users\Unknown\Source\Repos\Codare\BitHandler\obj\Debug\BitHandler.dll
 C:\Users\Unknown\Source\Repos\Codare\BitHandler\obj\Debug\BitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\bin\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\bin\Debug\BitHandler.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\obj\Debug\BitHandler.csprojResolveAssemblyReference.cache
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\obj\Debug\BitHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\BitHandler\obj\Debug\BitHandler.pdb
