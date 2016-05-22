@@ -47,9 +47,6 @@
             this.pABCRadioBtn = new System.Windows.Forms.RadioButton();
             this.pABC2RadioBtn = new System.Windows.Forms.RadioButton();
             this.refreshHistogramBtn = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.maxComputedErrorLabel = new System.Windows.Forms.Label();
-            this.minComputedErrorLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveOrigBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,8 +74,10 @@
             this.pCRadioBtn = new System.Windows.Forms.RadioButton();
             this.pJpegRadioBtn = new System.Windows.Forms.RadioButton();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.minComputedErrorLabel = new System.Windows.Forms.Label();
+            this.maxComputedErrorLabel = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.saveModeGroupBox.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.originalImagePb)).BeginInit();
@@ -86,6 +85,7 @@
             this.displayedErrorGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.histogram)).BeginInit();
             this.predictorGroupBox.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // histogramScaleTextBox
@@ -289,35 +289,6 @@
             this.refreshHistogramBtn.TabIndex = 86;
             this.refreshHistogramBtn.UseVisualStyleBackColor = true;
             this.refreshHistogramBtn.Click += new System.EventHandler(this.refreshHistogramBtn_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.maxComputedErrorLabel);
-            this.groupBox5.Controls.Add(this.minComputedErrorLabel);
-            this.groupBox5.Location = new System.Drawing.Point(423, 396);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(303, 42);
-            this.groupBox5.TabIndex = 87;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Computed Error";
-            // 
-            // maxComputedErrorLabel
-            // 
-            this.maxComputedErrorLabel.AutoSize = true;
-            this.maxComputedErrorLabel.Location = new System.Drawing.Point(177, 16);
-            this.maxComputedErrorLabel.Name = "maxComputedErrorLabel";
-            this.maxComputedErrorLabel.Size = new System.Drawing.Size(51, 13);
-            this.maxComputedErrorLabel.TabIndex = 1;
-            this.maxComputedErrorLabel.Text = "Maximum";
-            // 
-            // minComputedErrorLabel
-            // 
-            this.minComputedErrorLabel.AutoSize = true;
-            this.minComputedErrorLabel.Location = new System.Drawing.Point(43, 16);
-            this.minComputedErrorLabel.Name = "minComputedErrorLabel";
-            this.minComputedErrorLabel.Size = new System.Drawing.Size(48, 13);
-            this.minComputedErrorLabel.TabIndex = 0;
-            this.minComputedErrorLabel.Text = "Minimum";
             // 
             // pictureBox1
             // 
@@ -603,6 +574,35 @@
             this.statusLabel.Size = new System.Drawing.Size(0, 13);
             this.statusLabel.TabIndex = 88;
             // 
+            // minComputedErrorLabel
+            // 
+            this.minComputedErrorLabel.AutoSize = true;
+            this.minComputedErrorLabel.Location = new System.Drawing.Point(43, 16);
+            this.minComputedErrorLabel.Name = "minComputedErrorLabel";
+            this.minComputedErrorLabel.Size = new System.Drawing.Size(48, 13);
+            this.minComputedErrorLabel.TabIndex = 0;
+            this.minComputedErrorLabel.Text = "Minimum";
+            // 
+            // maxComputedErrorLabel
+            // 
+            this.maxComputedErrorLabel.AutoSize = true;
+            this.maxComputedErrorLabel.Location = new System.Drawing.Point(177, 16);
+            this.maxComputedErrorLabel.Name = "maxComputedErrorLabel";
+            this.maxComputedErrorLabel.Size = new System.Drawing.Size(51, 13);
+            this.maxComputedErrorLabel.TabIndex = 1;
+            this.maxComputedErrorLabel.Text = "Maximum";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.maxComputedErrorLabel);
+            this.groupBox5.Controls.Add(this.minComputedErrorLabel);
+            this.groupBox5.Location = new System.Drawing.Point(423, 396);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(303, 42);
+            this.groupBox5.TabIndex = 87;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Computed Error";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -641,8 +641,6 @@
             this.Text = "Near Lossles Predictive Coder";
             this.saveModeGroupBox.ResumeLayout(false);
             this.saveModeGroupBox.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.originalImagePb)).EndInit();
@@ -653,6 +651,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.histogram)).EndInit();
             this.predictorGroupBox.ResumeLayout(false);
             this.predictorGroupBox.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -678,9 +678,6 @@
         private System.Windows.Forms.RadioButton pABCRadioBtn;
         private System.Windows.Forms.RadioButton pABC2RadioBtn;
         private System.Windows.Forms.Button refreshHistogramBtn;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label maxComputedErrorLabel;
-        private System.Windows.Forms.Label minComputedErrorLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button saveOrigBtn;
         private System.Windows.Forms.Label label2;
@@ -709,6 +706,9 @@
         private System.Windows.Forms.RadioButton pJpegRadioBtn;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label minComputedErrorLabel;
+        private System.Windows.Forms.Label maxComputedErrorLabel;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }
 
