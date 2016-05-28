@@ -29,3 +29,5 @@ C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearL
 C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.csproj.GenerateResource.Cache
 C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.exe
 C:\Users\Unknown\Source\Repos\Codare\NearLosslessPredictiveCoder\obj\Debug\NearLosslessPredictiveCoder.pdb
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\ImageHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\NearLosslessPredictiveCoder\bin\Debug\ImageHandler.pdb

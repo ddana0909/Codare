@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Wavelet
     public partial class Form1 : Form
     {
         int imageHardCodedDim = 512;
+        Coder _coder;
 
         public Form1()
         {
@@ -40,11 +42,38 @@ namespace Wavelet
                 else
                 {
                     originalImagePb.Image = picture;
+                    _coder = new Coder(dlg.FileName, imageHardCodedDim);
 
                 }
             }
 
             dlg.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _coder.AnalysisHorizontal(1);
+            waveletImagePb.Image = Image.FromStream(ImageHandler.ImageHandler.ImageByteStream(_coder.WaveletMatrix, _coder.Header, 512));
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            _coder.AnalysisHorizontal(2);
+            waveletImagePb.Image = Image.FromStream(ImageHandler.ImageHandler.ImageByteStream(_coder.WaveletMatrix, _coder.Header, 512));
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            _coder.AnalysisHorizontal(3);
+            waveletImagePb.Image = Image.FromStream(ImageHandler.ImageHandler.ImageByteStream(_coder.WaveletMatrix, _coder.Header, 512));
+
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            _coder.AnalysisHorizontal(4);
+            waveletImagePb.Image = Image.FromStream(ImageHandler.ImageHandler.ImageByteStream(_coder.WaveletMatrix, _coder.Header, 512));
+
         }
     }
 }

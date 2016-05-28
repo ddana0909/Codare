@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4B86ACF-FB15-46E9-BD69-DDCAE9560079}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NearLosslessPredictiveCoder</RootNamespace>
-    <AssemblyName>NearLosslessPredictiveCoder</AssemblyName>
+    <RootNamespace>TestWavelet</RootNamespace>
+    <AssemblyName>TestWavelet</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -39,61 +39,20 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coder.cs" />
-    <Compile Include="Decoder.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PredictionFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BitHandler\BitHandler.csproj">
-      <Project>{DFB375ED-F3CE-4462-B0DB-334BD47CAB59}</Project>
-      <Name>BitHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ImageHandler\ImageHandler.csproj">
-      <Project>{55a59261-f196-4d08-8e37-c06f0096b964}</Project>
-      <Name>ImageHandler</Name>
+    <ProjectReference Include="..\Wavelet\Wavelet.csproj">
+      <Project>{bcbcd3f5-aa65-456f-b478-11f8b6adf5bf}</Project>
+      <Name>Wavelet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

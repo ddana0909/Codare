@@ -190,6 +190,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Analysis H1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -260,6 +261,7 @@
             this.button8.TabIndex = 18;
             this.button8.Text = "Analysis H2";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -300,6 +302,7 @@
             this.button12.TabIndex = 22;
             this.button12.Text = "Analysis H3";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
@@ -340,6 +343,7 @@
             this.button16.TabIndex = 26;
             this.button16.Text = "Analysis H4";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button17
             // 

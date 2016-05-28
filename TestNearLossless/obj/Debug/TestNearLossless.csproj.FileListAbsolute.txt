@@ -18,3 +18,5 @@ C:\Users\Unknown\Source\Repos\Codare\TestNearLossless\bin\Debug\BitHandler.dll
 C:\Users\Unknown\Source\Repos\Codare\TestNearLossless\bin\Debug\NearLosslessPredictiveCoder.pdb
 C:\Users\Unknown\Source\Repos\Codare\TestNearLossless\bin\Debug\BitHandler.pdb
 C:\Users\Unknown\Source\Repos\Codare\TestNearLossless\obj\Debug\TestNearLossless.csprojResolveAssemblyReference.cache
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\bin\Debug\ImageHandler.dll
+C:\Users\dana.diac\Desktop\PERSONAL\MASTER STUFF\Compresie\TestNearLossless\bin\Debug\ImageHandler.pdb

@@ -9,6 +9,7 @@ using BitHandler;
 using static System.Double;
 using static System.Int32;
 using System.IO;
+using ImageHandler;
 
 namespace NearLosslessPredictiveCoder
 {
@@ -88,7 +89,7 @@ namespace NearLosslessPredictiveCoder
                 {
                     originalImagePb.Image = picture;
                     _origPicturePath = dlg.FileName;
-                    _originalImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, origImageHeight, origImageWidth, out _origImageHeader);
+                    _originalImageMatrix = ImageHandler.ImageHandler.ImageToMatrix(_origPicturePath, origImageHeight, origImageWidth, out _origImageHeader);
                 }
             }
 

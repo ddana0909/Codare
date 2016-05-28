@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{005177
 		Images\Peppers512an.BMP = Images\Peppers512an.BMP
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageHandler", "ImageHandler\ImageHandler.csproj", "{55A59261-F196-4D08-8E37-C06F0096B964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWavelet", "TestWavelet\TestWavelet.csproj", "{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{BCBCD3F5-AA65-456F-B478-11F8B6ADF5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCBCD3F5-AA65-456F-B478-11F8B6ADF5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCBCD3F5-AA65-456F-B478-11F8B6ADF5BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55A59261-F196-4D08-8E37-C06F0096B964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55A59261-F196-4D08-8E37-C06F0096B964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55A59261-F196-4D08-8E37-C06F0096B964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55A59261-F196-4D08-8E37-C06F0096B964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636CB76F-2A39-43B1-9E9B-37F8C0B8EF36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
