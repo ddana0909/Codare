@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Wavelet
@@ -15,10 +8,12 @@ namespace Wavelet
     {
         int imageHardCodedDim = 512;
         Coder _coder;
+        bool loadedExternalWaveletImage;
 
         public Form1()
         {
             InitializeComponent();
+            _coder = new Coder(imageHardCodedDim);
         }
 
         private void origImageLoadBtn_Click(object sender, EventArgs e)
@@ -42,10 +37,10 @@ namespace Wavelet
                 else
                 {
                     originalImagePb.Image = picture;
-                    _coder = new Coder(dlg.FileName, imageHardCodedDim);
+                    _coder.ReadOriginalImage(dlg.FileName, !loadedExternalWaveletImage);
 
                 }
-                waveletImagePb.Image = ImageHandler.ImageHandler.CreateBitmapFromMatrix(_coder.WaveletMatrix, 512);
+                // waveletImagePb.Image = ImageHandler.ImageHandler.CreateBitmapFromMatrix(_coder.WaveletMatrix, 512);
             }
 
             dlg.Dispose();
@@ -150,10 +145,6 @@ namespace Wavelet
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
-            //var image = ImageHandler.ImageHandler.BmpWithScaleAndOffset(_coder.WaveletMatrix, double.Parse(scaleTb.Text), int.Parse(offsetTb.Text), imageHardCodedDim,
-            //     int.Parse(xTb.Text), int.Parse(yTb.Text));
-            // waveletImagePb.Image = image;
-
             waveletImagePb.Image =
                 ImageHandler.ImageHandler.CreateBitmapFromMatrix
                 (
@@ -228,5 +219,52 @@ namespace Wavelet
             _coder.SynthesisVertical(5);
             waveletImagePb.Image = ImageHandler.ImageHandler.CreateBitmapFromMatrix(_coder.WaveletMatrix, imageHardCodedDim);
         }
+
+        private void waveletSaveBtn_Click(object sender, EventArgs e)
+        {
+            _coder.SaveWavelet();
+            label7.Visible = true;
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            _coder.CalculateDifference();
+            maxLabel.Text = "Max: " + _coder.MaxError;
+            minLabel.Text = "Min: " + _coder.MinError;
+        }
+
+        private void waveletLoadBtn_Click(object sender, EventArgs e)
+        {
+            label7.Visible = false;
+            var dlg = new OpenFileDialog();
+
+            dlg.Title = "Open Image";
+            dlg.Filter = "bmp files (*.wv)|*.wv";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                var picture = Image.FromFile(dlg.FileName);
+
+
+                var origImageWidth = picture.Width;
+                var origImageHeight = picture.Height;
+
+                if (origImageWidth != imageHardCodedDim || origImageHeight != imageHardCodedDim)
+                    MessageBox.Show("Please Choose a 512x512 picture");
+                else
+                {
+                    _coder.LoadWaveletAnalysedImage(dlg.FileName);
+                    loadedExternalWaveletImage = true;
+                    waveletImagePb.Image = ImageHandler.ImageHandler.CreateBitmapFromMatrix(_coder.WaveletMatrix, 512);
+
+                }
+            }
+
+            dlg.Dispose();
+
+        }
+
+
     }
 }

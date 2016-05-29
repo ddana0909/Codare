@@ -68,6 +68,8 @@
             this.minLabel = new System.Windows.Forms.Label();
             this.maxLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button21 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.originalImagePb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waveletImagePb)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -168,6 +170,7 @@
             this.waveletLoadBtn.TabIndex = 11;
             this.waveletLoadBtn.Text = "Load";
             this.waveletLoadBtn.UseVisualStyleBackColor = true;
+            this.waveletLoadBtn.Click += new System.EventHandler(this.waveletLoadBtn_Click);
             // 
             // waveletSaveBtn
             // 
@@ -178,6 +181,7 @@
             this.waveletSaveBtn.TabIndex = 12;
             this.waveletSaveBtn.Text = "Save";
             this.waveletSaveBtn.UseVisualStyleBackColor = true;
+            this.waveletSaveBtn.Click += new System.EventHandler(this.waveletSaveBtn_Click);
             // 
             // groupBox1
             // 
@@ -465,7 +469,7 @@
             // minLabel
             // 
             this.minLabel.AutoSize = true;
-            this.minLabel.Location = new System.Drawing.Point(17, 52);
+            this.minLabel.Location = new System.Drawing.Point(47, 52);
             this.minLabel.Name = "minLabel";
             this.minLabel.Size = new System.Drawing.Size(33, 13);
             this.minLabel.TabIndex = 88;
@@ -474,7 +478,7 @@
             // maxLabel
             // 
             this.maxLabel.AutoSize = true;
-            this.maxLabel.Location = new System.Drawing.Point(17, 26);
+            this.maxLabel.Location = new System.Drawing.Point(47, 26);
             this.maxLabel.Name = "maxLabel";
             this.maxLabel.Size = new System.Drawing.Size(36, 13);
             this.maxLabel.TabIndex = 87;
@@ -484,18 +488,41 @@
             // 
             this.groupBox2.Controls.Add(this.maxLabel);
             this.groupBox2.Controls.Add(this.minLabel);
-            this.groupBox2.Location = new System.Drawing.Point(164, 585);
+            this.groupBox2.Location = new System.Drawing.Point(158, 581);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(163, 77);
             this.groupBox2.TabIndex = 89;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Error";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(910, 624);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(94, 13);
+            this.label7.TabIndex = 90;
+            this.label7.Text = "Saved Sucessfully";
+            this.label7.Visible = false;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(123, 607);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(58, 34);
+            this.button21.TabIndex = 89;
+            this.button21.Text = "Refresh";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1261, 683);
+            this.Controls.Add(this.button21);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.button17);
@@ -582,6 +609,8 @@
         private System.Windows.Forms.Label minLabel;
         private System.Windows.Forms.Label maxLabel;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button21;
     }
 }
 

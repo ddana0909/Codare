@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Wavelet
 {
@@ -16,22 +17,26 @@ namespace Wavelet
         public int MaxError;
         public int MinError;
 
-        public Coder(string filePath, int dimension)
+        public Coder(int dimension)
         {
-
             WaveletMatrix = new double[dimension, dimension];
             _inputMatrix = new int[dimension, dimension];
-            var imageMatrix = ImageHandler.ImageHandler.ReadImageByteMatrixFromFile(filePath, dimension, dimension, out Header);
+            _dimension = dimension;
+        }
 
-            for (int i = 0; i < dimension; i++)
+        public void ReadOriginalImage(string filePath, bool initWavelet)
+        {
+            var imageMatrix = ImageHandler.ImageHandler.ReadImageByteMatrixFromFile(filePath, _dimension, _dimension, out Header);
+
+            for (int i = 0; i < _dimension; i++)
             {
-                for (int j = 0; j < dimension; j++)
+                for (int j = 0; j < _dimension; j++)
                 {
                     _inputMatrix[i, j] = imageMatrix[i, j];
-                    WaveletMatrix[i, j] = 1.0 * imageMatrix[i, j];
+                    if (initWavelet)
+                        WaveletMatrix[i, j] = 1.0 * imageMatrix[i, j];
                 }
             }
-            _dimension = dimension;
 
         }
 
@@ -240,5 +245,33 @@ namespace Wavelet
                         MinError = (int)(_inputMatrix[i, j] - WaveletMatrix[i, j]);
                 }
         }
+
+        public void SaveWavelet()
+        {
+            BinaryWriter binaryWriter = new BinaryWriter(new FileStream(@"..\..\..\Images\WaveletImage.wv", FileMode.OpenOrCreate, FileAccess.ReadWrite));
+
+            binaryWriter.Write(Header);
+            for (int i = 0; i < 512; i++)
+                for (int j = 0; j < 512; j++)
+                {
+                    binaryWriter.Write(WaveletMatrix[i, j]);
+                }
+            binaryWriter.Close();
+        }
+        public void LoadWaveletAnalysedImage(string path)
+        {
+            Header = new byte[1078];
+
+            BinaryReader reader = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read));
+
+            Header = reader.ReadBytes(1078);
+            for (int i = 0; i < _dimension; i++)
+                for (int j = 0; j < _dimension; j++)
+                {
+                    WaveletMatrix[i, j] = reader.ReadDouble();
+                }
+            reader.Close();
+        }
+
     }
 }
