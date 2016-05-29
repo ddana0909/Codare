@@ -33,13 +33,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.origImageLoadBtn = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.scaleTb = new System.Windows.Forms.TextBox();
+            this.offsetTb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.waveletLoadBtn = new System.Windows.Forms.Button();
             this.waveletSaveBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.yTb = new System.Windows.Forms.TextBox();
+            this.xTb = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,9 +64,14 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
+            this.refreshBtn = new System.Windows.Forms.Button();
+            this.minLabel = new System.Windows.Forms.Label();
+            this.maxLabel = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.originalImagePb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waveletImagePb)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // originalImagePb
@@ -116,19 +125,21 @@
             this.origImageLoadBtn.UseVisualStyleBackColor = true;
             this.origImageLoadBtn.Click += new System.EventHandler(this.origImageLoadBtn_Click);
             // 
-            // textBox2
+            // scaleTb
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(65, 20);
-            this.textBox2.TabIndex = 7;
+            this.scaleTb.Location = new System.Drawing.Point(66, 22);
+            this.scaleTb.Name = "scaleTb";
+            this.scaleTb.Size = new System.Drawing.Size(65, 20);
+            this.scaleTb.TabIndex = 7;
+            this.scaleTb.Text = "10";
             // 
-            // textBox3
+            // offsetTb
             // 
-            this.textBox3.Location = new System.Drawing.Point(84, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(65, 20);
-            this.textBox3.TabIndex = 8;
+            this.offsetTb.Location = new System.Drawing.Point(66, 62);
+            this.offsetTb.Name = "offsetTb";
+            this.offsetTb.Size = new System.Drawing.Size(65, 20);
+            this.offsetTb.TabIndex = 8;
+            this.offsetTb.Text = "0";
             // 
             // label3
             // 
@@ -170,16 +181,54 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.yTb);
+            this.groupBox1.Controls.Add(this.xTb);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.scaleTb);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.offsetTb);
             this.groupBox1.Location = new System.Drawing.Point(558, 571);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 100);
+            this.groupBox1.Size = new System.Drawing.Size(277, 100);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vizualize Wavelet";
+            // 
+            // yTb
+            // 
+            this.yTb.Location = new System.Drawing.Point(172, 59);
+            this.yTb.Name = "yTb";
+            this.yTb.Size = new System.Drawing.Size(65, 20);
+            this.yTb.TabIndex = 14;
+            this.yTb.Text = "256";
+            // 
+            // xTb
+            // 
+            this.xTb.Location = new System.Drawing.Point(172, 23);
+            this.xTb.Name = "xTb";
+            this.xTb.Size = new System.Drawing.Size(65, 20);
+            this.xTb.TabIndex = 13;
+            this.xTb.Text = "256";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(154, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(12, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "y";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(154, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "x";
             // 
             // button1
             // 
@@ -201,6 +250,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Analysis V1";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -211,6 +261,7 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "Synthesis V1";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -221,6 +272,7 @@
             this.button4.TabIndex = 16;
             this.button4.Text = "Synthesis H1";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -231,6 +283,7 @@
             this.button5.TabIndex = 21;
             this.button5.Text = "Synthesis V2";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -241,6 +294,7 @@
             this.button6.TabIndex = 20;
             this.button6.Text = "Synthesis H2";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -251,6 +305,7 @@
             this.button7.TabIndex = 19;
             this.button7.Text = "Analysis V2";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
@@ -272,6 +327,7 @@
             this.button9.TabIndex = 25;
             this.button9.Text = "Synthesis V3";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
@@ -282,6 +338,7 @@
             this.button10.TabIndex = 24;
             this.button10.Text = "Synthesis H3";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button11
             // 
@@ -292,6 +349,7 @@
             this.button11.TabIndex = 23;
             this.button11.Text = "Analysis V3";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
@@ -313,6 +371,7 @@
             this.button13.TabIndex = 29;
             this.button13.Text = "Synthesis V4";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button14
             // 
@@ -323,6 +382,7 @@
             this.button14.TabIndex = 28;
             this.button14.Text = "Synthesis H4";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button15
             // 
@@ -333,6 +393,7 @@
             this.button15.TabIndex = 27;
             this.button15.Text = "Analysis V4";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button16
             // 
@@ -354,6 +415,7 @@
             this.button17.TabIndex = 33;
             this.button17.Text = "Synthesis V5";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
             // 
@@ -364,6 +426,7 @@
             this.button18.TabIndex = 32;
             this.button18.Text = "Synthesis H5";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button19
             // 
@@ -374,6 +437,7 @@
             this.button19.TabIndex = 31;
             this.button19.Text = "Analysis V5";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // button20
             // 
@@ -384,12 +448,56 @@
             this.button20.TabIndex = 30;
             this.button20.Text = "Analysis H5";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshBtn.Location = new System.Drawing.Point(801, 597);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(78, 40);
+            this.refreshBtn.TabIndex = 86;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            // 
+            // minLabel
+            // 
+            this.minLabel.AutoSize = true;
+            this.minLabel.Location = new System.Drawing.Point(17, 52);
+            this.minLabel.Name = "minLabel";
+            this.minLabel.Size = new System.Drawing.Size(33, 13);
+            this.minLabel.TabIndex = 88;
+            this.minLabel.Text = "Min =";
+            // 
+            // maxLabel
+            // 
+            this.maxLabel.AutoSize = true;
+            this.maxLabel.Location = new System.Drawing.Point(17, 26);
+            this.maxLabel.Name = "maxLabel";
+            this.maxLabel.Size = new System.Drawing.Size(36, 13);
+            this.maxLabel.TabIndex = 87;
+            this.maxLabel.Text = "Max =";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.maxLabel);
+            this.groupBox2.Controls.Add(this.minLabel);
+            this.groupBox2.Location = new System.Drawing.Point(164, 585);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(163, 77);
+            this.groupBox2.TabIndex = 89;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Error";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1261, 683);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button19);
@@ -425,6 +533,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.waveletImagePb)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,8 +547,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button origImageLoadBtn;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox scaleTb;
+        private System.Windows.Forms.TextBox offsetTb;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button waveletLoadBtn;
@@ -464,6 +574,14 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.TextBox yTb;
+        private System.Windows.Forms.TextBox xTb;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label minLabel;
+        private System.Windows.Forms.Label maxLabel;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

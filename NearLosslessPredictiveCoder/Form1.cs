@@ -464,8 +464,6 @@ namespace NearLosslessPredictiveCoder
         {
             Bitmap errorImageBmp = new Bitmap(imageHardCodedDim, imageHardCodedDim);
 
-
-            // Set each pixel in myBitmap to black.
             for (int Xcount = 0; Xcount < errorImage.Width; Xcount++)
             {
                 for (int Ycount = 0; Ycount < errorImage.Height; Ycount++)
