@@ -27,11 +27,8 @@ namespace NearLosslessPredictiveCoder
         private int _predictionTypeCoded;
         private int _acceptedErrorCoded;
         private byte[] _headerCoded;
-        private int[,] _errorMatrix;
 
         private int imageHardCodedDim = 256;
-
-
 
         public Form1()
         {
@@ -111,24 +108,6 @@ namespace NearLosslessPredictiveCoder
 
         }
 
-        private bool InitCoder()
-        {
-            var acceptedError = acceptedErrorTextBox.Text;
-            int intAcceptedError;
-            var isInt = TryParse(acceptedError, out intAcceptedError);
-            if (!isInt || intAcceptedError < 0)
-                return false;
-
-            RadioButton checkedRb = predictorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            if (checkedRb == null)
-                return false;
-            var predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
-
-            _coder = new Coder(intAcceptedError, 0, 255, predictorType, originalImagePb.Image.Width, _originalImageMatrix);
-            return true;
-
-        }
-
         private void refreshHistogramBtn_Click(object sender, EventArgs e)
         {
             RadioButton checkedRb = histogramImputGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
@@ -175,41 +154,11 @@ namespace NearLosslessPredictiveCoder
                     if (_decodedImageMatrix == null)
                     {
                         MessageBox.Show("No decoded image");
+                        return;
                     }
                     DrawHistogram(getHistogram(_decodedImageMatrix), scale);
                     break;
             }
-        }
-
-        public void DrawHistogram(int[] values, double scale)
-        {
-            var bmp = new Bitmap(histogram.Width, histogram.Height);
-            var g = Graphics.FromImage(bmp);
-            Pen pen = new Pen(Color.Black);
-            g.DrawLine(pen, new Point { X = 255, Y = 0 }, new Point { X = 255, Y = 255 });
-            pen = new Pen(Color.BlueViolet);
-            for (int i = 0; i < values.Length; i++)
-            {
-                g.DrawLine(pen, new Point { X = i, Y = 255 },
-                    new Point { X = i, Y = histogram.Height - (int)(scale * values[i]) });
-            }
-            histogram.Image = bmp;
-            g.Dispose();
-        }
-
-        private int[] getHistogram(int[,] matrix)
-        {
-            int[] histogram = new int[511];
-            //0...-255, 1 -254...
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    histogram[matrix[i, j] + 255]++;
-                }
-            }
-            return histogram;
-
         }
 
         private void saveOrigBtn_Click(object sender, EventArgs e)
@@ -240,6 +189,164 @@ namespace NearLosslessPredictiveCoder
             statusLabel.Text = "Saved";
         }
 
+        private void loadEncodedImage_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+
+            dlg.Title = "Open Image";
+            dlg.Filter = "bmp files (*.prd)|*.prd";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                //var picture = Image.FromFile(dlg.FileName);
+
+
+                //var codedImageWidth = picture.Width;
+                //var codedImageHeigth = picture.Height;
+
+                _codedPicturePath = dlg.FileName;
+                //_codedImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, imageHardCodedDim, imageHardCodedDim, out _origImageHeader);
+                //ReadCodedImage();
+                ReadDeafault();
+            }
+
+            dlg.Dispose();
+            //DrawHistogram(getHistogram(_codedImageMatrix), Double.Parse(histogramScaleTextBox.Text));
+        }
+
+        private void decodeBtn_Click(object sender, EventArgs e)
+        {
+            if (_codedPicturePath == null)
+            {
+                MessageBox.Show("No Image Selected");
+                return;
+            }
+            _decodedImageMatrix = new int[imageHardCodedDim, imageHardCodedDim];
+            var x = new Decoder(_acceptedErrorCoded, 0, 255, _predictionTypeCoded, imageHardCodedDim, _codedImageMatrix);
+            x.Decode();
+
+            byte[] imagebytes = new byte[1078 + imageHardCodedDim * imageHardCodedDim];
+            for (int i = 0; i < 1078; i++)
+            {
+                imagebytes[i] = _headerCoded[i];
+            }
+            for (int i = 0; i < imageHardCodedDim; i++)
+            {
+                for (int j = 0; j < imageHardCodedDim; j++)
+                {
+                    _decodedImageMatrix[i, j] = x.Decoded[i, j];
+                    imagebytes[1078 + i * imageHardCodedDim + j] = (byte)x.Decoded[i, j];
+                }
+            }
+
+
+            var img = Image.FromStream(new MemoryStream(imagebytes));
+
+            pictureBox1.Image = img;
+        }
+
+        private void refreshErrorImageBtn_Click(object sender, EventArgs e)
+        {
+            if (!(_origPicturePath == null || _codedPicturePath == null))
+            {
+                var minError = 9999;
+                var maxError = -9999;
+                for (int i = 0; i < imageHardCodedDim; i++)
+                {
+                    for (int j = 0; j < imageHardCodedDim; j++)
+                    {
+                        var error = _originalImageMatrix[i, j] - _decodedImageMatrix[i, j];
+                        if (error > maxError)
+                            maxError = error;
+                        if (error < minError)
+                            minError = error;
+                    }
+                }
+                minComputedErrorLabel.Text = minError.ToString();
+                maxComputedErrorLabel.Text = maxError.ToString();
+            }
+
+            //error*scale+128 
+
+            var scale = Convert.ToDouble(errorImageScaleTextBox.Text);
+            RadioButton checkedRb = displayedErrorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            if (checkedRb == null)
+            {
+                MessageBox.Show("No Error Type Selected");
+                return;
+            }
+            if (checkedRb.Text == "Prediction Error")
+            {
+                if (_coder == null)
+                {
+                    MessageBox.Show("Image was not encoded");
+                    return;
+                }
+                else
+                    DrawErrorImage(_coder.PredictionError, scale);
+            }
+            else
+            {
+                if (_codedPicturePath == null)
+                {
+                    MessageBox.Show("No Encoded Image was loaded");
+                    return;
+                }
+                DrawErrorImage(_codedImageMatrix, scale);
+            }
+
+        }
+
+        private bool InitCoder()
+        {
+            var acceptedError = acceptedErrorTextBox.Text;
+            int intAcceptedError;
+            var isInt = TryParse(acceptedError, out intAcceptedError);
+            if (!isInt || intAcceptedError < 0)
+                return false;
+
+            RadioButton checkedRb = predictorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            if (checkedRb == null)
+                return false;
+            var predictorType = _predictionTypes.FirstOrDefault(x => x.Value == checkedRb.Text).Key;
+
+            _coder = new Coder(intAcceptedError, 0, 255, predictorType, originalImagePb.Image.Width, _originalImageMatrix);
+            return true;
+
+        }
+
+        private void DrawHistogram(int[] values, double scale)
+        {
+            var bmp = new Bitmap(histogram.Width, histogram.Height);
+            var g = Graphics.FromImage(bmp);
+            Pen pen = new Pen(Color.Black);
+            g.DrawLine(pen, new Point { X = 255, Y = 0 }, new Point { X = 255, Y = 255 });
+            pen = new Pen(Color.BlueViolet);
+            for (int i = 0; i < values.Length; i++)
+            {
+                g.DrawLine(pen, new Point { X = i, Y = 255 },
+                    new Point { X = i, Y = histogram.Height - (int)(scale * values[i]) });
+            }
+            histogram.Image = bmp;
+            g.Dispose();
+        }
+
+        private int[] getHistogram(int[,] matrix)
+        {
+            int[] histogram = new int[511];
+            //0...-255, 1 -254...
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    histogram[matrix[i, j] + 255]++;
+                }
+            }
+            return histogram;
+
+        }
+
         private void SaveEncodedImage(string saveMode)
         {
             RadioButton checkedRb = predictorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
@@ -260,6 +367,7 @@ namespace NearLosslessPredictiveCoder
 
 
         }
+
 
         private void DefaultCoding(string fileName, int predictorType, string acceptedError)
         {
@@ -305,31 +413,7 @@ namespace NearLosslessPredictiveCoder
         }
 
 
-        private void loadEncodedImage_Click(object sender, EventArgs e)
-        {
-            var dlg = new OpenFileDialog();
 
-            dlg.Title = "Open Image";
-            dlg.Filter = "bmp files (*.prd)|*.prd";
-
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-
-                //var picture = Image.FromFile(dlg.FileName);
-
-
-                //var codedImageWidth = picture.Width;
-                //var codedImageHeigth = picture.Height;
-
-                _codedPicturePath = dlg.FileName;
-                //_codedImageMatrix = ImageHandler.ImageToMatrix(_origPicturePath, imageHardCodedDim, imageHardCodedDim, out _origImageHeader);
-                //ReadCodedImage();
-                ReadDeafault();
-            }
-
-            dlg.Dispose();
-            //DrawHistogram(getHistogram(_codedImageMatrix), Double.Parse(histogramScaleTextBox.Text));
-        }
 
         private void ReadDeafault()
         {
@@ -393,72 +477,6 @@ namespace NearLosslessPredictiveCoder
             return bytes[0];
         }
 
-        private void decodeBtn_Click(object sender, EventArgs e)
-        {
-            if (_codedPicturePath == null)
-            {
-                MessageBox.Show("No Image Selected");
-                return;
-            }
-            _decodedImageMatrix = new int[imageHardCodedDim, imageHardCodedDim];
-            var x = new Decoder(_acceptedErrorCoded, 0, 255, _predictionTypeCoded, imageHardCodedDim, _codedImageMatrix);
-            x.Decode();
-
-            byte[] imagebytes = new byte[1078 + imageHardCodedDim * imageHardCodedDim];
-            for (int i = 0; i < 1078; i++)
-            {
-                imagebytes[i] = _headerCoded[i];
-            }
-            for (int i = 0; i < imageHardCodedDim; i++)
-            {
-                for (int j = 0; j < imageHardCodedDim; j++)
-                {
-                    _decodedImageMatrix[i, j] = x.Decoded[i, j];
-                    imagebytes[1078 + i * imageHardCodedDim + j] = (byte)x.Decoded[i, j];
-                }
-            }
-
-
-            var img = Image.FromStream(new MemoryStream(imagebytes));
-
-            pictureBox1.Image = img;
-        }
-
-        private void refreshErrorImageBtn_Click(object sender, EventArgs e)
-        {
-            if (_origPicturePath == null || _codedPicturePath == null)
-            {
-                MessageBox.Show("Loas coded and decoded image");
-                return;
-            }
-            _errorMatrix = new int[imageHardCodedDim, imageHardCodedDim];
-            var minError = 9999;
-            var maxError = -9999;
-            for (int i = 0; i < imageHardCodedDim; i++)
-            {
-                for (int j = 0; j < imageHardCodedDim; j++)
-                {
-                    _errorMatrix[i, j] = _originalImageMatrix[i, j] - _decodedImageMatrix[i, j];
-                    if (_errorMatrix[i, j] > maxError)
-                        maxError = _errorMatrix[i, j];
-                    if (_errorMatrix[i, j] < minError)
-                        minError = _errorMatrix[i, j];
-                }
-            } //error*scale+128
-            var scale = Convert.ToDouble(errorImageScaleTextBox.Text);
-            RadioButton checkedRb = displayedErrorGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            if (checkedRb == null)
-            {
-                MessageBox.Show("No Error Type Selected");
-                return;
-            }
-            if (checkedRb.Text == "Prediction Error")
-                DrawErrorImage(_errorMatrix, scale);
-            else
-                DrawErrorImage(_codedImageMatrix, scale);
-            minComputedErrorLabel.Text = minError.ToString();
-            maxComputedErrorLabel.Text = maxError.ToString();
-        }
 
         private void DrawErrorImage(int[,] errorM, double scale)
         {
@@ -478,6 +496,8 @@ namespace NearLosslessPredictiveCoder
             }
 
             errorImage.Image = errorImageBmp;
+            errorImage.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+
         }
     }
 
